@@ -46,7 +46,9 @@ class QueueMonitor extends Plugin
 
     public function getLogger(): ?Logger
     {
-        return $this->get('logger');
+        return $this->getSettings()->slackWebhookUrl
+            ? $this->get('logger')
+            : null;
     }
 
     protected function createSettingsModel(): ?Model
